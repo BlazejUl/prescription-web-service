@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DoctorController {
-    private final DoctorRepository doctorRepository;
+    private final DoctorService doctorService;
 
-    public DoctorController(DoctorRepository doctorRepository) {
-        this.doctorRepository = doctorRepository;
+    public DoctorController(DoctorService doctorService) {
+        this.doctorService = doctorService;
     }
 
     @GetMapping("/doctors")
     public ResponseEntity<Iterable<Doctor>> getAllDoctors(){
-        return ResponseEntity.ok(doctorRepository.findAll());
+        return ResponseEntity.ok(doctorService.getAll());
     }
 }
