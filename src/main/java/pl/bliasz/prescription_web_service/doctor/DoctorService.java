@@ -1,5 +1,8 @@
 package pl.bliasz.prescription_web_service.doctor;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DoctorService {
     private final DoctorRepository doctorRepository;
 
