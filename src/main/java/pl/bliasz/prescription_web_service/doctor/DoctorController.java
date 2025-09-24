@@ -2,10 +2,7 @@ package pl.bliasz.prescription_web_service.doctor;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class DoctorController {
@@ -28,5 +25,15 @@ public class DoctorController {
     @PostMapping("doctors")
     public ResponseEntity<Doctor> createDoctor(@RequestBody Doctor doctor){
         return doctorService.createNew(doctor);
+    }
+
+    @PutMapping("doctors/{id}")
+    public ResponseEntity<Doctor> changeDoctor(@PathVariable Integer id, @RequestBody Doctor doctor){
+        return doctorService.change(id,doctor);
+    }
+
+    @PatchMapping("doctors/{id}")
+    public ResponseEntity<Doctor> changeDoctorPartialy(@PathVariable Integer id, @RequestBody Doctor doctor){
+        return doctorService.change(id,doctor);
     }
 }

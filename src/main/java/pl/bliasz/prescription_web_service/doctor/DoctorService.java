@@ -32,4 +32,26 @@ public class DoctorService {
                 .toUri();
         return ResponseEntity.created(uri).body(savedDoctor);
     }
+
+    public ResponseEntity<Doctor> change(Integer id, Doctor newDoctor){
+        return doctorRepository.findById(id)
+                .map(oldDoctor -> {
+                    oldDoctor.setPwz(newDoctor.getPwz());
+                    oldDoctor.setFullName(newDoctor.getFullName());
+                    oldDoctor.setPassword(newDoctor.getPassword());
+                    return doctorRepository.save(oldDoctor);})
+                .map(ResponseEntity::ok)
+                .orElseGet(()-> ResponseEntity.notFound().build());
+    }
+
+    public ResponseEntity<Doctor> changePartialy(Integer id, Doctor newDoctor){
+        return doctorRepository.findById(id)
+                .map(oldDoctor -> {
+                    if (!newDoctor.getPwz().isBlank()) oldDoctor.setPwz(newDoctor.getPwz());
+                    if (!newDoctor.getFullName().isBlank()) oldDoctor.setFullName(newDoctor.getFullName());
+                    if (!newDoctor.getPassword().isBlank()) oldDoctor.setPassword(newDoctor.getPassword());
+                    return doctorRepository.save(oldDoctor);})
+                .map(ResponseEntity::ok)
+                .orElseGet(()-> ResponseEntity.notFound().build());
+    }
 }
