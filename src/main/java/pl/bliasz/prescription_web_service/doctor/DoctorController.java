@@ -36,4 +36,9 @@ public class DoctorController {
     public ResponseEntity<Doctor> changeDoctorPartialy(@PathVariable Integer id, @RequestBody Doctor doctor){
         return doctorService.change(id,doctor);
     }
+
+    @DeleteMapping("doctors/{id}")
+    public ResponseEntity<Void> deleteDoctor(@PathVariable Integer id){
+        return doctorService.delete(id);
+    }
 }

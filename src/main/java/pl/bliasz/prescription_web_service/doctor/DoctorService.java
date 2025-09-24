@@ -54,4 +54,11 @@ public class DoctorService {
                 .map(ResponseEntity::ok)
                 .orElseGet(()-> ResponseEntity.notFound().build());
     }
+
+    public ResponseEntity<Void> delete(Integer id){
+        if(!doctorRepository.existsById(id)) return ResponseEntity.notFound().build();
+
+        doctorRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
