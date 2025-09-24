@@ -12,7 +12,7 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("doctors")
     public ResponseEntity<Iterable<Doctor>> getAllDoctors(){
         return ResponseEntity.ok(doctorService.getAll());
     }

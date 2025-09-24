@@ -13,7 +13,7 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/patients")
+    @GetMapping("patients")
     public ResponseEntity<Iterable<Patient>> getAllPatients(){
         return ResponseEntity.ok(patientService.getAll());
     }
